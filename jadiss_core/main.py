@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from database import models, engine
 from routers import items
 
+#서버실행 명령어 : uvicorn main:app --reload
 # 데이터베이스 초기화 (모델 -> 테이블 생성)
 models.Base.metadata.create_all(bind=engine)
 
