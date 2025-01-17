@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 ##도커 실행
 #DATABASE_URL = "mysql+pymysql://jadiss_core:jadiss_core##@172.17.0.1:3308/core"  
 ##로컬 실행
-DATABASE_URL = "mysql+pymysql://jadiss_core:jadiss_core##@jadiss-core-mysql:3306/core"
+DATABASE_URL = "mysql+pymysql://jadiss_core:jadiss_core##@jadiss-core-mysql:3307/core"
 # SQLAlchemy 엔진 및 세션 구성
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
