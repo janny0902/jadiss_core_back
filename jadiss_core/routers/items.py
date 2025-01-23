@@ -19,11 +19,12 @@ class ItemSearch(BaseModel):
 router = APIRouter()
 
 @router.get("/items")
-def get_items(db: Session = Depends(get_db)):
+def read_items(db: Session = Depends(get_db)):
     return db.query(Item).all()
+    
 
 @router.post("/itemCreate")
-def create_user(item: ItemCreate, db: Session = Depends(get_db)):
+def create_item(item: ItemCreate, db: Session = Depends(get_db)):
     new_item = Item(name=item.name, description=item.description, price=item.price)
     db.add(new_item)
     db.commit()
