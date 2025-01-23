@@ -20,8 +20,7 @@ router = APIRouter()
 
 @router.get("/items")
 def get_items(db: Session = Depends(get_db)):
-    items = get_items(db)
-    return items
+    return db.query(Item).all()
 
 @router.post("/itemCreate")
 def create_user(item: ItemCreate, db: Session = Depends(get_db)):
