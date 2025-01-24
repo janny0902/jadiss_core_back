@@ -3,6 +3,7 @@ from database import models, engine
 from routers import items, users
 from jadiss_finance_lib.macd import macd
 from jadiss_finance_lib.rsi import rsi
+from jadiss_finance_lib.macd_oci import macd_oci
 import pandas as pd
 
 # 서버 실행 명령어: uvicorn main:app --reload
@@ -23,11 +24,15 @@ async def root():
 
     # MACD 및 RSI 계산
     macd_line, signal_line = macd(prices_series)
-    rsi_values = rsi(prices_series)
-    print(rsi_values)
+    #rsi_values = rsi(prices_series)
+    macd_1, signal_line_1, oci = macd_oci(prices)
+    print(oci)
 
     return {
         "macd_line": macd_line.tolist(),
         "signal_line": signal_line.tolist(),
-        "rsi_values": rsi_values.tolist()
+     #   "rsi_values": rsi_values.tolist(),
+        "macd": macd_1.tolist(),
+        "signal_line": signal_line_1.tolist(),
+        "oci": oci.tolist(),
     }
