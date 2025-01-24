@@ -29,7 +29,7 @@ def create_item(item: ItemCreate, db: Session = Depends(get_db)):
     new_item = Item(name=item.name, description=item.description, price=item.price)
     db.add(new_item)
     db.commit()
-    db.refresh(new_item)  # 삽입된 객체를 반환받음
+    db.refresh(new_item)  # 삽입된 객체를 반환받음1
     return {"message": "Item created successfully", "item": new_item}
 
 @router.post("/itemsWhere")
