@@ -27,7 +27,6 @@ async def root():
     print(macd_line)
     print(signal_line)
     print(rsi_values)
-    print('배포테스트')
 
     return {
         "macd_line": macd_line.tolist(),
