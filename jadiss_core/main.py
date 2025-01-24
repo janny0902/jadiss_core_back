@@ -6,7 +6,7 @@ from jadiss_finance_lib.rsi import rsi
 import pandas as pd
 
 # 서버 실행 명령어: uvicorn main:app --reload
-# 데이터베이스 초기화 (모델 -> 테이블 생성)
+# 데이터베이스 초기화 (모델 -> 테이블 생성) 
 models.Base.metadata.create_all(bind=engine)
 
 # FastAPI 인스턴스 생성
