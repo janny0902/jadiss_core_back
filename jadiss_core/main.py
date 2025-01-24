@@ -24,8 +24,6 @@ async def root():
     # MACD 및 RSI 계산
     macd_line, signal_line = macd(prices_series)
     rsi_values = rsi(prices_series)
-    print(macd_line)
-    print(signal_line)
     print(rsi_values)
 
     return {
