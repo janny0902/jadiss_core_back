@@ -12,7 +12,7 @@ RUN apt-get update && \
 
 # 4. 환경 변수로 GitHub 토큰 설정
 ARG GITHUB_TOKEN
-ENV GITHUB_TOKEN="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"
+ENV GITHUB_TOKEN=${GITHUB_TOKEN}
 
 # 5. 종속성 설치를 위한 requirements.txt 복사
 COPY requirements.txt .
