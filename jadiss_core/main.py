@@ -27,6 +27,6 @@ async def root():
     return {
         "macd_line": macd_line.tolist(),
         "signal_line": signal_line.tolist(),
-         "rsi_values": rsi_values.tolist()
+        "rsi_values": rsi_values.tolist()
     }
     #return {"message": "Hello, FastAPI!"}
