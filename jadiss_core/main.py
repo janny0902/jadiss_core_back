@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 from database import models, engine
-from routers import items
-from routers import users
+from routers import items, users
 from jadiss_finance_lib.macd import macd
 from jadiss_finance_lib.rsi import rsi
-import pandas as pd 
+import pandas as pd
 
-#서버실행 명령어 : uvicorn main:app --reload
+# 서버 실행 명령어: uvicorn main:app --reload
 # 데이터베이스 초기화 (모델 -> 테이블 생성)
 models.Base.metadata.create_all(bind=engine)
 
@@ -19,14 +18,19 @@ app.include_router(users.router)
 
 @app.get("/")
 async def root():
-    prices = [100, 101, 102, 101, 100, 98, 99, 100, 101, 102]
+    prices = [100, 101, 102, 101, 100, 98, 99, 100, 101, 102, 108, 103, 99, 90, 45, 36, 50, 90, 70, 80, 100, 120, 110, 100, 100, 99, 98, 97, 96, 95]
     prices_series = pd.Series(prices)
+
+    # MACD 및 RSI 계산
     macd_line, signal_line = macd(prices_series)
-    prices_series = pd.Series(prices)
     rsi_values = rsi(prices_series)
+    print(macd_line)
+    print(signal_line)
+    print(rsi_values)
+    print('배포테스트')
+
     return {
         "macd_line": macd_line.tolist(),
         "signal_line": signal_line.tolist(),
         "rsi_values": rsi_values.tolist()
     }
-    #return {"message": "Hello, FastAPI!"}
