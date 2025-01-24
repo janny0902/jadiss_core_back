@@ -23,6 +23,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir cryptography && \
     pip install pymysql
 
+RUN pip uninstall -y jadiss-finance-lib && \
+    pip install --no-cache-dir git+https://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@github.com/janny0902/jadiss-finance-lib.git
+
 # 7. 애플리케이션 코드 복사
 COPY . .
 
