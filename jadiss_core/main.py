@@ -26,7 +26,7 @@ async def root():
     rsi_values = rsi(prices_series)
     return {
         "macd_line": macd_line.tolist(),
-        "signal_line": signal_line.tolist()
+        "signal_line": signal_line.tolist(),
          "rsi_values": rsi_values.tolist()
     }
     #return {"message": "Hello, FastAPI!"}
