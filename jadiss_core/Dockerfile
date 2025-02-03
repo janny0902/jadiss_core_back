@@ -19,12 +19,10 @@ COPY requirements.txt .
 
 # 6. 종속성 설치
 RUN pip install --no-cache-dir --upgrade pip && \
+    pip uninstall -y jadiss-finance-lib && \
     pip install --no-cache-dir -r requirements.txt && \
     pip install --no-cache-dir cryptography && \
     pip install pymysql
-
-RUN pip uninstall -y jadiss-finance-lib && \
-    pip install -r requirements.txt    
 
 # 7. 애플리케이션 코드 복사
 COPY . .

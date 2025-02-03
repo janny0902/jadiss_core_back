@@ -18,7 +18,7 @@ app.include_router(users.router)
 
 @app.get("/")
 async def root():
-    prices = [100, 101, 102, 101, 100, 98, 99, 100, 101, 102, 108, 103, 99, 90, 45]
+    prices = [100, 101, 102, 101, 100, 98, 99, 100, 101, 102, 108, 103, 99, 90, 47]
     prices_series = pd.Series(prices)
 
     # MACD 및 RSI 계산
