@@ -19,15 +19,14 @@ COPY requirements.txt .
 
 # 6. 종속성 설치
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip uninstall -y jadiss-finance-lib && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir cryptography && \
-    pip install pymysql
+    pip install --no-cache-dir opendartreader && \
+    pip install --no-cache-dir -r requirements.txt
 
 # 7. 애플리케이션 코드 복사
 COPY . .
 
-ENV DATABASE_URL="mysql+pymysql://jadiss_core:jadiss_core##@jadiss-core-mysql:3306/core"
+# 8. 로컬 PostgreSQL 연결 설정
+ENV DATABASE_URL="postgresql://jadiss_core@host.docker.internal:5432/core"
 
-# 8. FastAPI 앱 실행 (Uvicorn으로)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# 9. FastAPI 앱 실행 (Uvicorn으로)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8090", "--reload"]

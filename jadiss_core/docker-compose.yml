@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  # FastAPI 애플리케이션
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jadiss-core-api
+    ports:
+      - "8090:8090"
+    environment:
+      - DATABASE_URL=postgresql://jadiss_core:jadiss_core##@host.docker.internal:5432/core
+    restart: always

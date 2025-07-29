@@ -1,9 +1,8 @@
 fastapi==0.100.0
 uvicorn==0.22.0
-pymysql==1.0.3
 sqlalchemy==1.4.47
 python-dotenv==1.0.0
-
-git+https://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@github.com/janny0902/jadiss-finance-lib.git
+psycopg2-binary==2.9.9
+finance-datareader==0.9.96
 pandas
 numpy
