@@ -23,6 +23,11 @@ try:
 except ImportError:
     print("stock_crawling 모듈을 임포트할 수 없습니다.")
 
+try:
+    from routers.app_response import industry_stock
+except ImportError:
+    print("industry_stock 모듈을 임포트할 수 없습니다.")
+
 
 
 try:
@@ -67,6 +72,11 @@ try:
     app.include_router(stock_crawling.router)
 except NameError:
     print("stock_crawling 라우터를 등록할 수 없습니다.")
+
+try:
+    app.include_router(industry_stock.router)
+except NameError:
+    print("industry_stock 라우터를 등록할 수 없습니다.")
 
 
 
