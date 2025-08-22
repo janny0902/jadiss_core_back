@@ -12,17 +12,32 @@
 
 ### 실행 방법
 
-#### Windows
+#### Docker 실행
 
+**Windows**
 ```bash
 start.bat
 ```
 
-#### Linux/Mac
-
+**Linux/Mac**
 ```bash
 chmod +x start.sh
 ./start.sh
+```
+
+#### 로컬 실행
+
+**필수 조건**
+- Python 3.8 이상
+- PostgreSQL 데이터베이스 실행 중
+
+**실행 단계**
+```bash
+# 의존성 설치
+pip install -r requirements.txt
+
+# 애플리케이션 실행
+uvicorn main:app --host 0.0.0.0 --port 8090 --reload
 ```
 
 ## 접속 정보
