@@ -89,3 +89,73 @@ async def get_stocks_data(date: str, market: str = None) -> List[Dict[str, Any]]
     
     logging.info(f"getStocksData result count: {len(result) if result else 0}")
     return result
+
+@router.get("/getStockChartData")
+async def get_stock_chart_data(stock_code: str) -> List[Dict[str, Any]]:
+    """
+    특정 종목의 차트 데이터를 조회합니다.
+    
+    Args:
+        stock_code (str): 주식 코드
+        
+    Returns:
+        List[Dict[str, Any]]: 해당 종목의 모든 차트 데이터
+    """
+    logging.info(f"getStockChartData API called with stock_code: {stock_code}")
+    
+    query = """
+    SELECT
+        sdd.date,
+        sdd.stock_code,
+        sdd.open_price,
+        sdd.close_price,
+        sdd.high_price,
+        sdd.low_price
+    FROM
+        stock_daily_data sdd
+    WHERE sdd.stock_code = :stock_code
+    ORDER BY sdd.date ASC
+    """
+    
+    params = {"stock_code": stock_code}
+    result = PostgresQuery.execute_query(query, params)
+    
+    logging.info(f"getStockChartData result count: {len(result) if result else 0}")
+    return result
+
+@router.get("/getStockInfo")
+async def get_stock_info(stock_code: str, market: str = None) -> List[Dict[str, Any]]:
+    """
+    특정 종목의 기본 정보를 조회합니다.
+    
+    Args:
+        stock_code (str): 주식 코드
+        market (str): 시장 구분 (KOSPI, KOSDAQ 등)
+        
+    Returns:
+        List[Dict[str, Any]]: 해당 종목의 기본 정보
+    """
+    logging.info(f"getStockInfo API called with stock_code: {stock_code}, market: {market}")
+    
+    query = """
+    SELECT
+        ci.category_id,
+        ci.stock_code,
+        ci.corp_name as company_name,
+        si.market
+    FROM
+        company_info ci 
+        left join stock_info si on ci.stock_code = si.stock_code
+    WHERE ci.stock_code = :stock_code
+    """
+    
+    params = {"stock_code": stock_code}
+    
+    if market:
+        query += " AND si.market = :market"
+        params["market"] = market
+    
+    result = PostgresQuery.execute_query(query, params)
+    
+    logging.info(f"getStockInfo result count: {len(result) if result else 0}")
+    return result
