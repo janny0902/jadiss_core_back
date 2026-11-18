@@ -221,7 +221,7 @@ class StockCrawlingService:
             from OpenDartReader.dart import OpenDartReader
 
             # 발급받은 API 키 입력
-            api_key = '34f3abfbcd2fc0ce30b09f05466a98c1aa5fb865'
+            api_key = ''
             dart = OpenDartReader(api_key)
 
             
